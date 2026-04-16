@@ -18,7 +18,41 @@ public:
 	Debtor();
 	Debtor(const char* name, const char* surname, const char* workAddress, const char* liveAddress, const char* phoneNumber, double salary, bool hasLatePayment, double debt);
 	Debtor(const Debtor& other);
+	Debtor(Debtor&& other);
 	~Debtor();
+
+	Debtor& operator=(const Debtor& other) {
+		if (this != &other) {
+			setName(other.getName());
+			setSurname(other.getSurname());
+			setWorkAddress(other.getWorkAddress());
+			setLiveAddress(other.getLiveAddress());
+			setPhoneNumber(other.getPhoneNumber());
+			setSalary(other.getSalary());
+			setHasLatePayment(other.getHasLatePayment());
+			setDebt(other.getDebt());
+		}
+		return *this;
+	}
+
+	Debtor& operator=(Debtor&& other) noexcept {
+		std::cout << "Move Assignment Operator called" << std::endl;
+		if (this != &other) {
+			this->_id = other._id;
+			setName(other.getName());
+			setSurname(other.getSurname());
+			setWorkAddress(other.getWorkAddress());
+			setLiveAddress(other.getLiveAddress());
+			setPhoneNumber(other.getPhoneNumber());
+			setSalary(other.getSalary());
+			setHasLatePayment(other.getHasLatePayment());
+			setDebt(other.getDebt());
+			other._name = nullptr;
+			other._surname = (nullptr);
+			other._workAddress = (nullptr);
+		}
+		return *this;
+	}
 
 	// Accessors
 	void setName(const char* name);
@@ -75,6 +109,25 @@ Debtor::Debtor(const Debtor& other)
 		other.getWorkAddress(), 
 		other.getLiveAddress(), 
 		other.getPhoneNumber(), other.getSalary(), other.getHasLatePayment(), other.getDebt()) {
+}
+
+Debtor::Debtor(Debtor&& other)
+{
+	std::cout << "Move Constructor called" << std::endl;
+	_id = other._id;
+	_name = other._name;
+	_surname = other._surname;
+	_workAddress = other._workAddress;
+	_liveAddress = other._liveAddress;
+	_phoneNumber = other._phoneNumber;
+	_salary = other._salary;
+	_hasLatePayment = other._hasLatePayment;
+	_debt = other._debt;
+	other._name = nullptr;
+	other._surname = nullptr;
+	other._workAddress = nullptr;
+	other._liveAddress = nullptr;
+	other._phoneNumber = nullptr;
 }
 
 Debtor::~Debtor() {
