@@ -25,6 +25,11 @@ public:
 
 	friend ostream& operator<<(ostream& output, const Student& s);
 	friend istream& operator>>(istream& input, Student& s);
+
+	operator string() const
+	{
+		return _name + " " + _surname + " " + to_string(_age) + " " + to_string(_score);
+	}
 };
 
 
