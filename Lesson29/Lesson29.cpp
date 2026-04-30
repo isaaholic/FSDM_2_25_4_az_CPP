@@ -295,3 +295,14 @@ int main()
 	//}
 
 }
+
+// Homework
+//Worker id, name, surname, age, pageCount
+//WorkerQueue
+//Printer workerQueue
+//start - 
+//Printer clasinin ichinde workerQueue saxlanilmalidir
+//ve printer in start methodu chagrilan kimi
+//novbede olan ishchilerin kagizlari ksersks olsun
+//kserks emeliyyati bitenden sonra ishci siradan dequeue olunsun
+//novbe boshalana qeder bu proses davam etmelidir
