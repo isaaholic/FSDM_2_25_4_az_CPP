@@ -1,8 +1,12 @@
-﻿for (int i = 0; i < 10; i++)
+﻿namespace ExampleCsharp
 {
-	for (int j = 0; j < i+1; j++)
-	{
-		Console.Write("*");
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            System.Console.WriteLine("Hello World!");
+
+            int x;
+        }
     }
-    Console.WriteLine();
 }
