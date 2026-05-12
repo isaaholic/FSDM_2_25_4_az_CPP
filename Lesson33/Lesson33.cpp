@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -52,6 +53,97 @@ public:
 //	}
 //};
 
+typedef unsigned short int ushort;
+
+class Car
+{
+public:
+	string brand;
+	string model;
+	string color;
+	ushort year;
+
+	Car() = default;
+	Car(string brand, string model, string color, ushort year)
+	{
+		this->brand = brand;
+		this->model = model;
+		this->color = color;
+		this->year = year;
+	}
+
+	virtual void DisplayInfo()
+	{
+		cout << "Brand: " << brand << endl;
+		cout << "Model: " << model << endl;
+		cout << "Color: " << color << endl;
+		cout << "Year: " << year << endl;
+	}
+
+	~Car()
+	{
+		cout << "Car Destructor" << endl;
+	}
+};
+
+class Manual : public Car
+{
+public:
+	Manual() = default;
+
+	Manual(string brand, string model, string color, ushort year) : Car(brand, model, color, year)
+	{
+	}
+
+	void DisplayInfo() override
+	{
+		Car::DisplayInfo();
+		cout << "Type: Manual" << endl;
+	}
+};
+
+class Automatic : public Car
+{
+public:
+	Automatic() = default;
+	Automatic(string brand, string model, string color, ushort year) : Car(brand, model, color, year)
+	{
+	}
+	void DisplayInfo() override
+	{
+		Car::DisplayInfo();
+		cout << "Type: Automatic" << endl;
+	}
+};
+
+class Bmw : public Automatic
+{
+public:
+	Bmw() = default;
+	Bmw(string model, string color, ushort year) : Automatic("BMW", model, color, year)
+	{
+	}
+	void DisplayInfo() override
+	{
+		cout << "BMW Factory:" << endl;
+		Automatic::DisplayInfo();
+	}
+};
+
+class Mercedes : public Manual
+{
+public:
+	Mercedes() = default;
+	Mercedes(string model, string color, ushort year) : Manual("Mercedes", model, color, year)
+	{
+	}
+	void DisplayInfo() override
+	{
+		cout << "Mercedes Factory:" << endl;
+		Manual::DisplayInfo();
+	}
+};
+
 int main()
 {
 	// Old way (without polymorphism)
@@ -77,6 +169,21 @@ int main()
 	//Animal* a2 = new Dog();
 	//a2->name = new char[20] {'B', 'e', 'l', 'l', 'a', '\0'};
 	//delete a2; // Calls Dog's destructor, which deletes the name
+
+	vector<Car*> cars;
+	cars.push_back(new Manual("Toyota", "Corolla", "White", 2020));
+	cars.push_back(new Automatic("Honda", "Civic", "Black", 2021));
+	cars.push_back(new Bmw("X5", "Blue", 2022));
+	cars.push_back(new Mercedes("C-Class", "Silver", 2023));
+	for (Car* car : cars)
+	{
+		car->DisplayInfo();
+		cout << "-----------------" << endl;
+	}
+	for (auto car : cars)
+	{
+		delete car;
+	}
 }
 
 
