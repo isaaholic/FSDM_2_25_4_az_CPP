@@ -81,9 +81,9 @@ struct DateTime
 //
 //// Relationships between classes:
 //// 1. Inheritance - is-a relationship
-//// 2. Composition: - has a relationship
-////		1. Association - uses a relationship
-////		2. Aggregation - has a relationship with shared ownership
+//// 2. Association - uses-a relationship
+//// 3. Aggregation - has-a relationship
+//// 4. Composition - part-of relationship (has-a relationship with strong ownership)
 //
 //// Association: Student uses DateTime
 //

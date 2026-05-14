@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <chrono>
+#include <vector>
 
 using namespace std;
 
@@ -82,9 +83,96 @@ public:
 
 A::~A() {}
 
+enum Currency
+{
+	USD,
+	EUR,
+	AZN,
+};
+
+class PaymentService
+{
+public:
+	float balance;
+	virtual void Pay(float amount) = 0;
+};
+
+class CentralizedPaymentWall
+{
+public:
+	Currency currency;
+
+	virtual ~CentralizedPaymentWall() = 0;
+};
+
+CentralizedPaymentWall::~CentralizedPaymentWall() {};
+
+class CreditCard : public PaymentService, public CentralizedPaymentWall
+{
+public:
+	Currency currency;
+	CreditCard()
+	{
+		currency = USD; // default value for demonstration
+	}
+	void Pay(float amount) override
+	{
+		balance -= amount; // Update the balance by subtracting the amount
+		cout << "Paying with Credit Card - " << amount << endl;
+	}
+};
+
+class Cash : public PaymentService, public CentralizedPaymentWall
+{
+public:
+	Currency currency;
+	Cash()
+	{
+		currency = AZN; // default value for demonstration
+	}
+	void Pay(float amount) override
+	{
+		balance -= amount; // Update the balance by subtracting the amount
+		cout << "Paying with Cash - " << amount << endl;
+	}
+};
+
+class Cryto : public PaymentService
+{
+public:
+	void Pay(float amount) override
+	{
+		balance -= amount; // Update the balance by subtracting the amount
+		cout << "Paying with Crypto - " << amount << endl;
+	}
+};
+
+class Product
+{
+public:
+	string name;
+	float price;
+	Product() = default;
+	Product(string name, float price)
+	{
+		this->name = name;
+		this->price = price;
+	}
+};
+
 
 int main()
 {
 	//BaseEntity* entity1 = new BaseEntity(); // Error: cannot instantiate abstract class
-	User* u = new User("Isa", "email@gmail.com");
+	//User* u = new User("Isa", "email@gmail.com");
+	vector<Product> products;
+	products.push_back(Product("Product 1", 10.0f));
+	products.push_back(Product("Product 2", 20.0f));
+	PaymentService* paymentMethod = new Cryto();
+	paymentMethod->balance = 100.0f;
+	for (auto product : products)
+	{
+		paymentMethod->Pay(product.price);
+	}
+	cout << paymentMethod->balance << endl;
 }
