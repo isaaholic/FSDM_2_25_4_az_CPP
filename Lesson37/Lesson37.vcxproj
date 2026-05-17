@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="Lesson37.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="binary.bin" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
