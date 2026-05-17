@@ -295,3 +295,53 @@ int main()
 
 	// Application <-> Stream <-> Buffer <-> OS <-> Hardware (device/file/socket)
 }
+
+
+// Homework
+
+//class Applier {
+//public:
+//
+//	string _name = "";
+//	int _age = 0;
+//	string _speciality = "";
+//	string _text = "";
+//};
+//
+//
+//class Company {
+//	vector<Applier*> appliers;
+//
+//public:
+//	void hireUp(Applier* cv);
+//
+//	void showAllCV();
+//
+//
+//	void writeToFile(string filename);
+//
+//
+//	void readToFile(string filename);
+//};
+//
+//
+//
+//
+//
+//
+//int main() {
+//	Applier* cv1 = new Applier("Ceyhun", 18, "IT", "Empty1");
+//	Applier* cv2 = new Applier("Sebine", 17, "Designer", "Empty2");
+//
+//
+//	Company company;
+//	// company.hireUp(cv1);
+//	// company.hireUp(cv2);
+//	// 
+//	// company.writeToFile("company.txt");
+//
+//
+//	company.readToFile("company.txt");
+//	company.showAllCV();
+//
+//}
